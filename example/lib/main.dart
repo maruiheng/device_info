@@ -86,6 +86,7 @@ class _MyAppState extends State<MyApp> {
       'isPhysicalDevice': build.isPhysicalDevice,
       'androidId': build.androidId,
       "user":build.user,
+      'systemFeatures': build.systemFeatures,
     };
   }
 
@@ -103,6 +104,7 @@ class _MyAppState extends State<MyApp> {
       'utsname.release:': data.utsname.release,
       'utsname.version:': data.utsname.version,
       'utsname.machine:': data.utsname.machine,
+
     };
   }
 

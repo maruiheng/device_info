@@ -62,10 +62,12 @@ class AndroidDeviceInfo {
     this.type,
     this.isPhysicalDevice,
     this.androidId,
-    this.user
+    this.user,
+    List<String> systemFeatures,
   })  : supported32BitAbis = List<String>.unmodifiable(supported32BitAbis),
         supported64BitAbis = List<String>.unmodifiable(supported64BitAbis),
-        supportedAbis = List<String>.unmodifiable(supportedAbis);
+        supportedAbis = List<String>.unmodifiable(supportedAbis),
+        systemFeatures = List<String>.unmodifiable(systemFeatures);
 
   /// Android operating system version values derived from `android.os.Build.VERSION`.
   final AndroidBuildVersion version;
@@ -128,6 +130,7 @@ class AndroidDeviceInfo {
   final String androidId;
 
   final String user;
+  final List<String> systemFeatures;
 
   /// Deserializes from the message received from [_kChannel].
   static AndroidDeviceInfo _fromMap(Map<String, dynamic> map) {
@@ -153,6 +156,7 @@ class AndroidDeviceInfo {
         type: map['type'],
         isPhysicalDevice: map['isPhysicalDevice'],
         androidId: map['androidId'],
+        systemFeatures: _fromList(map['systemFeatures']),
         user: map['user']);
   }
 
