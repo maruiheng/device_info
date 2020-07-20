@@ -62,6 +62,7 @@ class AndroidDeviceInfo {
     this.type,
     this.isPhysicalDevice,
     this.androidId,
+    this.user
   })  : supported32BitAbis = List<String>.unmodifiable(supported32BitAbis),
         supported64BitAbis = List<String>.unmodifiable(supported64BitAbis),
         supportedAbis = List<String>.unmodifiable(supportedAbis);
@@ -126,31 +127,33 @@ class AndroidDeviceInfo {
   /// The Android hardware device ID that is unique between the device + user and app signing.
   final String androidId;
 
+  final String user;
+
   /// Deserializes from the message received from [_kChannel].
   static AndroidDeviceInfo _fromMap(Map<String, dynamic> map) {
     return AndroidDeviceInfo._(
-      version:
-          AndroidBuildVersion._fromMap(map['version']?.cast<String, dynamic>()),
-      board: map['board'],
-      bootloader: map['bootloader'],
-      brand: map['brand'],
-      device: map['device'],
-      display: map['display'],
-      fingerprint: map['fingerprint'],
-      hardware: map['hardware'],
-      host: map['host'],
-      id: map['id'],
-      manufacturer: map['manufacturer'],
-      model: map['model'],
-      product: map['product'],
-      supported32BitAbis: _fromList(map['supported32BitAbis']),
-      supported64BitAbis: _fromList(map['supported64BitAbis']),
-      supportedAbis: _fromList(map['supportedAbis']),
-      tags: map['tags'],
-      type: map['type'],
-      isPhysicalDevice: map['isPhysicalDevice'],
-      androidId: map['androidId'],
-    );
+        version: AndroidBuildVersion._fromMap(
+            map['version']?.cast<String, dynamic>()),
+        board: map['board'],
+        bootloader: map['bootloader'],
+        brand: map['brand'],
+        device: map['device'],
+        display: map['display'],
+        fingerprint: map['fingerprint'],
+        hardware: map['hardware'],
+        host: map['host'],
+        id: map['id'],
+        manufacturer: map['manufacturer'],
+        model: map['model'],
+        product: map['product'],
+        supported32BitAbis: _fromList(map['supported32BitAbis']),
+        supported64BitAbis: _fromList(map['supported64BitAbis']),
+        supportedAbis: _fromList(map['supportedAbis']),
+        tags: map['tags'],
+        type: map['type'],
+        isPhysicalDevice: map['isPhysicalDevice'],
+        androidId: map['androidId'],
+        user: map['user']);
   }
 
   /// Deserializes message as List<String>
@@ -264,8 +267,7 @@ class IosDeviceInfo {
       model: map['model'],
       localizedModel: map['localizedModel'],
       identifierForVendor: map['identifierForVendor'],
-      idfa:map['idfa'],
-
+      idfa: map['idfa'],
       isPhysicalDevice: map['isPhysicalDevice'] == 'true',
       utsname: IosUtsname._fromMap(map['utsname']?.cast<String, dynamic>()),
     );

@@ -85,6 +85,7 @@ class _MyAppState extends State<MyApp> {
       'type': build.type,
       'isPhysicalDevice': build.isPhysicalDevice,
       'androidId': build.androidId,
+      "user":build.user,
     };
   }
 
